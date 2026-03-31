@@ -266,7 +266,6 @@ export default function Editor({ documentId, initialContent, onSave, userRole, i
         {editor && canComment && (
           <BubbleMenu 
             editor={editor} 
-            tippyOptions={{ duration: 100 }}
             shouldShow={({ editor, state }) => {
               // Ensure we only show on distinct selections, and we aren't already commenting
               return !state.selection.empty;
@@ -274,7 +273,7 @@ export default function Editor({ documentId, initialContent, onSave, userRole, i
           >
             <button
               onClick={handleAddCommentTrigger}
-              style={{ backgroundColor: 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '24px', padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer' }}
+              style={{ backgroundColor: 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '24px', padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
             >
               <MessageSquarePlus size={16} /> Add Comment
             </button>
