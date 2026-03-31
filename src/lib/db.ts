@@ -2,8 +2,13 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
 
-// Define the path to the SQLite database file
-const dbPath = path.join(process.cwd(), 'database.sqlite');
+// In production (Vercel), the filesystem at process.cwd() is read-only.
+// SQLite must be written to /tmp which is the only writable directory.
+// Note: /tmp is ephemeral on Vercel — data resets on cold starts.
+const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+const dbPath = isProduction
+  ? '/tmp/database.sqlite'
+  : path.join(process.cwd(), 'database.sqlite');
 
 // Ensure the directory exists (though in this case it's process.cwd(), it's good practice)
 const dbDir = path.dirname(dbPath);
